@@ -25,8 +25,9 @@ class Usuario():
         # Si el usuario existe y la contraseña es correcta, se devuelve un token JWT
         if len(res.data) == 1:
             json_data = res.data
-            id_patient = json_data[0]['id']
-            return jsonify({"acceso": "ACCESO A LA CUENTA AUTORIZADO", "id_patient": id_patient}, )
+            print(json_data)
+            id_patient = json_data[0]['id_patient']
+            return jsonify({"acceso": True, "id_patient": id_patient}, )
         #jsonify({"acceso": "AUTORIZADO" ,"access_token": access_token})
         else:
             return jsonify({"acceso": "ACCESO A LA CUENTA NO AUTORIZADO"})

@@ -24,7 +24,8 @@ class RegistroUsuario():
 
             datos_registro_usuario = {
                 'user': user,
-                'password': password
+                'password': password,
+                'id_patient': id_patient
             }
 
             datos_registro_paciente = {
@@ -32,7 +33,7 @@ class RegistroUsuario():
                 'name': name,
                 'last_name': last_name,
                 'email_address': email_address,
-                'phone_number': phone_number
+                'phone_number': phone_number,
             }
             
             datos_reporte_paciente = {
