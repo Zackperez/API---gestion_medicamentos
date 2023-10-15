@@ -22,10 +22,11 @@ class Usuario():
         # Buscamos el usuario en la tabla 'users'
         query = client.table('user').select('*').eq('user', user).eq('password', password)
         res = query.execute()
-        print(res)
         # Si el usuario existe y la contraseña es correcta, se devuelve un token JWT
         if len(res.data) == 1:
-            return jsonify({"acceso": "ACCESO A LA CUENTA AUTORIZADO"})
+            json_data = res.data
+            id_patient = json_data[0]['id']
+            return jsonify({"acceso": "ACCESO A LA CUENTA AUTORIZADO", "id_patient": id_patient}, )
         #jsonify({"acceso": "AUTORIZADO" ,"access_token": access_token})
         else:
             return jsonify({"acceso": "ACCESO A LA CUENTA NO AUTORIZADO"})
