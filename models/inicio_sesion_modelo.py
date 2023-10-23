@@ -11,8 +11,8 @@ class Usuario():
         }
 
     def login(self):
-        user = request.json.get('user')
-        password = request.json.get('password')
+        user = request.json.get('usuario')
+        password = request.json.get('contrasena')
 
         SUPABASE_URL = 'https://tscfmjlnezdjlzwsmcmx.supabase.co'
         SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzY2ZtamxuZXpkamx6d3NtY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg0ODk2ODEsImV4cCI6MjAwNDA2NTY4MX0.S1vQ1CYSpjvrwXIwSFC1_8dxin8I9XN8aXOdt6zCTWg'
@@ -20,16 +20,17 @@ class Usuario():
         client = supabase.create_client(SUPABASE_URL, SUPABASE_KEY)
 
         # Buscamos el usuario en la tabla 'users'
-        query = client.table('user').select('*').eq('user', user).eq('password', password)
+        query = client.table('USUARIOS').select('*').eq('usuario', user).eq('contrasena', password)
         res = query.execute()
         # Si el usuario existe y la contraseña es correcta, se devuelve un token JWT
         if len(res.data) == 1:
             json_data = res.data
             print(json_data)
-            id_patient = json_data[0]['id_patient']
-            return jsonify({"acceso": True, "id_patient": id_patient}, )
+            id_paciente = json_data[0]['id_paciente']
+            return jsonify({"acceso": True, "id_paciente": id_paciente}, )
         #jsonify({"acceso": "AUTORIZADO" ,"access_token": access_token})
         else:
+            print(res)
             return jsonify({"acceso": "ACCESO A LA CUENTA NO AUTORIZADO"})
     
     # def datos_usuario(self):
