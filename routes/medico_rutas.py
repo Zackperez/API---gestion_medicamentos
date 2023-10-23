@@ -6,7 +6,7 @@ con_medico= MedicoControlador()
 buscar_paciente = Blueprint('buscar_paciente', __name__)
 obtener_reportes_paciente = Blueprint('obtener_reportes_paciente', __name__)
 
-@buscar_paciente.route('/buscar-paciente/', methods=['GET'])
+@buscar_paciente.route('/buscar-paciente/', methods=['POST'])
 @cross_origin()
 def busqueda_paciente():
    return con_medico.buscar_paciente()
