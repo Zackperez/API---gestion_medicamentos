@@ -14,41 +14,41 @@ class RegistroUsuario():
     # Realizar una solicitud POST a la API de SUPABASE
     def registrar_datos_usuario(self):
         try:
-            user = request.json.get('user')
-            password = request.json.get('password')
-            name = request.json.get('name')
-            last_name = request.json.get('last_name')
-            email_address = request.json.get('email_address')
-            phone_number = request.json.get('phone_number')
-            id_patient = request.json.get('id_patient')
+            usuario = request.json.get('usuario')
+            contrasena = request.json.get('contrasena')
+            nombre = request.json.get('nombre')
+            apellido = request.json.get('apellido')
+            correo = request.json.get('correo')
+            celular = request.json.get('celular')
+            id_paciente = request.json.get('id_paciente')
 
             datos_registro_usuario = {
-                'user': user,
-                'password': password,
-                'id_patient': id_patient
+                'usuario': usuario,
+                'contrasena': contrasena,
+                'id_paciente': id_paciente
             }
 
             datos_registro_paciente = {
-                'id_patient': id_patient,
-                'name': name,
-                'last_name': last_name,
-                'email_address': email_address,
-                'phone_number': phone_number,
+                'id_paciente': id_paciente,
+                'nombre': nombre,
+                'apellido': apellido,
+                'correo': correo,
+                'celular': celular,
             }
             
             datos_reporte_paciente = {
-                 'description': "no tiene",
-                 'symptoms': "no tiene",
-                 'disease': "no tiene",
-                 'id_patient': id_patient
+                 'descripcion': "no tiene",
+                 'sintomas': "no tiene",
+                 'enfermedad': "no tiene",
+                 'id_paciente': id_paciente
             }
 
             datos_recordatorio_medicina = {
-                'date': "",
-                'time': "",
-                'medicine': "",
-                'information': "",
-                'id_patient': id_patient
+                'fecha': "",
+                'hora': "",
+                'medicina': "",
+                'informacion': "",
+                'id_paciente': id_paciente
             }
             
             datos_insertar_usuario_nuevo = json.dumps(datos_registro_usuario)
@@ -56,21 +56,21 @@ class RegistroUsuario():
             datos_insertar_nuevo_reporte = json.dumps(datos_reporte_paciente)
             datos_recordatorio_tiempo_medicina = json.dumps(datos_recordatorio_medicina)
 
-            response = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/user', 
+            response = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/USUARIOS', 
                                      
                 data = datos_insertar_usuario_nuevo, 
                 headers = self.headers)
 
-            response2 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/patients', 
+            response2 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/PACIENTES', 
                                      
                 data = datos_insertar_paciente_nuevo, 
                 headers = self.headers)
-            response3 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/reports',
+            response3 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES',
                                       
                 data= datos_insertar_nuevo_reporte,
                 headers=self.headers)
 
-            response4 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/medicine_reminders',
+            response4 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS',
                                       
                 data= datos_recordatorio_tiempo_medicina,
                 headers=self.headers)

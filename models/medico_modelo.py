@@ -14,23 +14,23 @@ class MedicoModelo():
     # Realizar una solicitud POST a la API de SUPABASE
     def buscar_paciente(self):
         try:
-            id_patient = request.json.get('id_patient')
-            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/patients?id_patient=eq.'+str(id_patient),
+            id_paciente = request.json.get('id_paciente')
+            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/PACIENTES?id_paciente=eq.'+str(id_paciente),
                                    headers = self.headers)
             
             response_data = json.loads(response.text)
-            id_patient = response_data[0]['id_patient']
-            name = response_data[0]['name']
-            last_name = response_data[0]['last_name']
-            email_address = response_data[0]['email_address']
-            phone_number = response_data[0]['phone_number']
+            id_paciente = response_data[0]['id_paciente']
+            nombre = response_data[0]['nombre']
+            apellido = response_data[0]['apellido']
+            correo = response_data[0]['correo']
+            celular = response_data[0]['celular']
 
 
-            return jsonify({"id_patient": id_patient,
-                            "name": name,
-                            "last_name": last_name,
-                            "email_address": email_address,
-                            "phone_number":phone_number,
+            return jsonify({"id_paciente": id_paciente,
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "correo": correo,
+                            "celular":celular,
                             })
 
         except requests.exceptions.HTTPError as err:
@@ -40,14 +40,14 @@ class MedicoModelo():
     def obtener_reportes_paciente(self):
 
         try:
-            id_patient = request.json.get('id_patient')
-            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/patients?id_patient=eq.'+str(id_patient),
+            id_paciente = request.json.get('id_paciente')
+            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/PACIENTES?id_paciente=eq.'+str(id_paciente),
             headers = self.headers)
             
-            response2 = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/reports?id_patient=eq.'+str(id_patient),
+            response2 = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES?id_paciente=eq.'+str(id_paciente),
             headers = self.headers)
 
-            response3 = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/medicine_reminders?id_patient=eq.'+str(id_patient),
+            response3 = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINA?id_paciente=eq.'+str(id_paciente),
             headers = self.headers)
 
             lista_reportes = []
@@ -61,11 +61,11 @@ class MedicoModelo():
 
             return jsonify({
                 "datos_pacientes": {
-                    "id_patient": response.json()[0]['id_patient'],
-                    "name": response.json()[0]['name'],
-                    "last_name": response.json()[0]['last_name'],
-                    "email_address": response.json()[0]['email_address'],
-                    "phone_number": response.json()[0]['phone_number'],
+                    "id_paciente": response.json()[0]['id_paciente'],
+                    "nombre": response.json()[0]['nombre'],
+                    "apellido": response.json()[0]['apellido'],
+                    "correo": response.json()[0]['correo'],
+                    "celular": response.json()[0]['celular'],
                 },
                 "reportes": lista_reportes,
 

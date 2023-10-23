@@ -13,28 +13,28 @@ class RecordatorioModelo():
     
     def crear_recordatorio(self):
             
-        date = request.json.get('date')
-        time = request.json.get('time')
-        medicine = request.json.get('medicine')
-        information = request.json.get('information')
-        id_patient = request.json.get('id_patient')
+        fecha = request.json.get('fecha')
+        hora = request.json.get('hora')
+        medicamento = request.json.get('medicamento')
+        informacion = request.json.get('informacion')
+        id_paciente = request.json.get('id_paciente')
 
         datos_crear_recordatorios = {
-            'date': date,
-            'time': time,
-            'medicine': medicine,
-            'information': information,
-            'id_patient': id_patient
+            'fecha': fecha,
+            'hora': hora,
+            'medicamento': medicamento,
+            'informacion': informacion,
+            'id_paciente': id_paciente
         }
 
         datos_recordatorio = json.dumps(datos_crear_recordatorios)
 
         try:
-            requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/medicine_reminders', 
+            requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS', 
             data = datos_recordatorio, 
             headers = self.headers)
 
-            return jsonify({"Recordatorio creado para el usuario": id_patient})
+            return jsonify({"Recordatorio creado para el usuario": id_paciente})
 
         except requests.exceptions.HTTPError as err:
             print(err)
@@ -44,8 +44,8 @@ class RecordatorioModelo():
     def obtener_recordatorio(self):
 
         try:
-            id_patient = request.json.get('id_patient')
-            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/medicine_reminders?id_patient=eq.'+str(id_patient),
+            id_paciente = request.json.get('id_paciente')
+            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_paciente=eq.'+str(id_paciente),
             headers= self.headers)
 
             lista_recordatorios = []

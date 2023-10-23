@@ -14,26 +14,26 @@ class ReporteModelo():
     # Realizar una solicitud POST a la API de SUPABASE
     def crear_reporte(self):
             
-        description = request.json.get('description')
-        symptoms =  request.json.get('symptoms')
-        disease = request.json.get('disease')
-        id_patient = request.json.get('id_patient')
+        descripcion = request.json.get('descripcion')
+        sintomas =  request.json.get('sintomas')
+        enfermedad = request.json.get('enfermedad')
+        id_paciente = request.json.get('id_paciente')
 
         datos_crear_reportes = {
-            'description': description,
-            'symptoms': symptoms,
-            'disease': disease,
-            'id_patient': id_patient
+            'descripcion': descripcion,
+            'sintomas': sintomas,
+            'enfermedad': enfermedad,
+            'id_paciente': id_paciente
         }
 
         datos_reportes= json.dumps(datos_crear_reportes)
 
         try:
-            requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/reports', 
+            requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES', 
             data = datos_reportes,
             headers = self.headers)
 
-            return jsonify({"Reporte creado para el usuario": id_patient})
+            return jsonify({"Reporte creado para el usuario": id_paciente})
 
         except requests.exceptions.HTTPError as err:
             print(err)
@@ -42,8 +42,8 @@ class ReporteModelo():
     
     def obtener_reporte(self):
         try:
-            id_patient = request.json.get('id_patient')
-            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/reports?id_patient=eq.'+str(id_patient),
+            id_paciente = request.json.get('id_paciente')
+            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES?id_paciente=eq.'+str(id_paciente),
                                    headers = self.headers)
             
             print(response.json())

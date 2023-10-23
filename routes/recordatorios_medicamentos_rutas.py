@@ -11,7 +11,7 @@ obtener_recordatorio = Blueprint('obtener_recordatorio', __name__)
 def creacion_recordatorio():
    return con_recordatorio.crear_recordatorio()
 
-@obtener_recordatorio.route('/obtener_recordatorio/', methods=['POST'])
+@obtener_recordatorio.route('/obtener-recordatorio/', methods=['POST'])
 @cross_origin()
 def busqueda_recordatorio():
    return con_recordatorio.obtener_recordatorio()
