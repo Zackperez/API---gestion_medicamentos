@@ -1,5 +1,6 @@
 from config import *
 from flask import request, jsonify
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 import supabase
 
 class Usuario():
@@ -26,16 +27,11 @@ class Usuario():
         if len(res.data) == 1:
             json_data = res.data
             print(json_data)
+            access_token = create_access_token(identity=user)
+            print(access_token)
             id_paciente = json_data[0]['id_paciente']
-            return jsonify({"acceso": True, "id_paciente": id_paciente}, )
+            return jsonify({"acceso": True, "id_paciente": id_paciente, "access_token": access_token})
         #jsonify({"acceso": "AUTORIZADO" ,"access_token": access_token})
         else:
             print(res)
             return jsonify({"acceso": "ACCESO A LA CUENTA NO AUTORIZADO"})
-    
-    # def datos_usuario(self):
-            
-    #     response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/usuario?select=*', 
-    #                             headers= self.headers)
-    #     return response.content
-    

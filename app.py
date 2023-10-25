@@ -6,9 +6,12 @@ from routes.inicio_sesion_rutas import *
 from routes.recordatorios_medicamentos_rutas import *
 from routes.medico_rutas import *
 from routes.reportes_rutas import *
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 
 app = Flask(__name__)
+jwt = JWTManager(app)
 cors = CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
+app.config['JWT_SECRET_KEY'] = 'super-secret' # Clave secreta para firmar los JWT
 
 app.register_blueprint(registrar_usuario)
 app.register_blueprint(iniciar_sesion)
