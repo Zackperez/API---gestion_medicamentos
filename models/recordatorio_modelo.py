@@ -41,12 +41,14 @@ class RecordatorioModelo():
 
         return 201
     
-    def obtener_recordatorio(self):
+    def obtener_recordatorio(self, id):
 
         try:
-            id_paciente = request.json.get('id_paciente')
-            response = requests.get('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_paciente=eq.'+str(id_paciente),
+
+            response = requests.get(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_paciente=eq.{id}',
             headers= self.headers)
+
+            print(response)
 
             lista_recordatorios = []
             for recordatorios in response.json():

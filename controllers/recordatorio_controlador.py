@@ -8,8 +8,8 @@ class RecordatorioControlador:
         query= mod_recordatorio.crear_recordatorio()
         return query
     
-    def obtener_recordatorio(self):
-        query= mod_recordatorio.obtener_recordatorio()
+    def obtener_recordatorio(self, id):
+        query= mod_recordatorio.obtener_recordatorio(id)
         return query
     
     def eliminar_recordatorio(self, id):

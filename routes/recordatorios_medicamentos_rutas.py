@@ -13,10 +13,10 @@ eliminar_recordatorio = Blueprint('eliminar_recordatorio', __name__)
 def creacion_recordatorio():
    return con_recordatorio.crear_recordatorio()
 
-@obtener_recordatorio.route('/obtener-recordatorio/', methods=['POST'])
+@obtener_recordatorio.route('/obtener-recordatorio/<id>', methods=['GET'])
 @cross_origin()
-def busqueda_recordatorio():
-   return con_recordatorio.obtener_recordatorio()
+def busqueda_recordatorio(id):
+   return con_recordatorio.obtener_recordatorio(id)
 
 @obtener_recordatorio.route('/eliminar-recordatorio/<id>', methods=['DELETE'])
 @cross_origin()
