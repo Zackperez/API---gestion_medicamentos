@@ -11,3 +11,7 @@ class RecordatorioControlador:
     def obtener_recordatorio(self):
         query= mod_recordatorio.obtener_recordatorio()
         return query
+    
+    def eliminar_recordatorio(self, id):
+        query= mod_recordatorio.eliminar_recordatorio(id)
+        return query

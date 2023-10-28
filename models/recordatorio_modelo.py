@@ -58,7 +58,18 @@ class RecordatorioModelo():
             print(err)
         return 201
 
+    def eliminar_recordatorio(self, id_recordatorio_eliminar):
 
+        try:
+            asd = requests.delete(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_recordatorio=eq.{id_recordatorio_eliminar}', 
+            headers = self.headers)
+            print(asd)
+            return jsonify({"Recordatorio eliminado": "Exitoso"})
+
+        except requests.exceptions.HTTPError as err:
+            print(err)
+
+        return 201
 
 
 
