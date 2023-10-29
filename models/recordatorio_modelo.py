@@ -48,13 +48,10 @@ class RecordatorioModelo():
             response = requests.get(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_paciente=eq.{id}',
             headers= self.headers)
 
-            print(response)
-
             lista_recordatorios = []
             for recordatorios in response.json():
                 lista_recordatorios.append(recordatorios)
 
-            print(response.text)
             return jsonify({"recordatorios": lista_recordatorios})
         except requests.exceptions.HTTPError as err:
             print(err)
@@ -63,9 +60,9 @@ class RecordatorioModelo():
     def eliminar_recordatorio(self, id_recordatorio_eliminar):
 
         try:
-            asd = requests.delete(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_recordatorio=eq.{id_recordatorio_eliminar}', 
+            requests.delete(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_recordatorio=eq.{id_recordatorio_eliminar}', 
             headers = self.headers)
-            print(asd)
+
             return jsonify({"Recordatorio eliminado": "Exitoso"})
 
         except requests.exceptions.HTTPError as err:
