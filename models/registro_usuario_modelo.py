@@ -21,7 +21,9 @@ class RegistroUsuario():
             correo = request.json.get('correo')
             celular = request.json.get('celular')
             id_paciente = request.json.get('id_paciente')
-
+            sexo = request.json.get('sexo')
+            fecha = request.json.get('fecha')
+            
             datos_registro_usuario = {
                 'usuario': usuario,
                 'contrasena': contrasena,
@@ -33,6 +35,8 @@ class RegistroUsuario():
                 'nombre': nombre,
                 'apellido': apellido,
                 'correo': correo,
+                'fecha': fecha,
+                'sexo': sexo,
                 'celular': celular,
             }
             
@@ -65,15 +69,15 @@ class RegistroUsuario():
                                      
                 data = datos_insertar_paciente_nuevo, 
                 headers = self.headers)
-            response3 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES',
+            #response3 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES',
                                       
-                data= datos_insertar_nuevo_reporte,
-                headers=self.headers)
+            #    data= datos_insertar_nuevo_reporte,
+            #    headers=self.headers)
 
-            response4 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS',
+            #response4 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS',
                                       
-                data= datos_recordatorio_tiempo_medicina,
-                headers=self.headers)
+            #   data= datos_recordatorio_tiempo_medicina,
+            #   headers=self.headers)
 
             return jsonify({"Registro de usuario": "Exitoso", "Registro de paciente": "Exitoso", "Registro de reporte": "Exitoso"})
         
