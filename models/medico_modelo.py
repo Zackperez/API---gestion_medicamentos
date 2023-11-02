@@ -10,6 +10,29 @@ class MedicoModelo():
         'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzY2ZtamxuZXpkamx6d3NtY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg0ODk2ODEsImV4cCI6MjAwNDA2NTY4MX0.S1vQ1CYSpjvrwXIwSFC1_8dxin8I9XN8aXOdt6zCTWg',
         'Content-Type' : 'application/json'
         }
+    
+    def datos_de_doctor(self, id):
+        try:
+            response = requests.get(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/DOCTORES?id_doctor=eq.{id}',
+                                   headers = self.headers)
+            
+            response_data = json.loads(response.text)
+            id_doctor = response_data[0]['id_doctor']
+            nombre = response_data[0]['nombre']
+            apellido = response_data[0]['apellido']
+            celular = response_data[0]['celular']
+            correo = response_data[0]['correo']
+            print(id_doctor)
+
+            return jsonify({"id_doctor": id_doctor,
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "correo": correo,
+                            "celular":celular,
+                            })
+        except requests.exceptions.HTTPError as err:
+            print(err)
+        return 201
 
     # Realizar una solicitud POST a la API de SUPABASE
     def buscar_paciente(self, id):

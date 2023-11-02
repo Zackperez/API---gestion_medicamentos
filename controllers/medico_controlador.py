@@ -4,6 +4,10 @@ mod_medico = MedicoModelo()
 
 class MedicoControlador:
 
+    def datos_de_doctor (self, id):
+        query = mod_medico.datos_de_doctor(id)
+        return query
+
     def buscar_paciente (self, id):
         query = mod_medico.buscar_paciente(id)
         return query

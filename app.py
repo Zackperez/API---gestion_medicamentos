@@ -23,6 +23,8 @@ app.register_blueprint(obtener_recordatorio)
 app.register_blueprint(crear_reporte)
 app.register_blueprint(obtener_reporte)
 app.register_blueprint(obtener_datos_usuario)
+app.register_blueprint(datos_de_doctor)
+
 
 def pagina_no_encontrada(error):
     return "<h1>La pagina a la que intentas acceder no existe...</h1>"
