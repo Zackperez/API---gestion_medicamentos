@@ -27,8 +27,19 @@ class UsuarioModelo():
         return 201
 
 
+    def notificaciones_usuario(self, id):
 
+        try:
+            response = requests.get(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/ENTREGAS_MEDICAMENTOS?id_paciente=eq.{id}',
+            headers= self.headers)
 
+            datos = response.json()
+
+            return jsonify({"datos_notificaciones": datos})
+
+        except requests.exceptions.HTTPError as err:
+            print(err)
+        return 201
 
 
 
