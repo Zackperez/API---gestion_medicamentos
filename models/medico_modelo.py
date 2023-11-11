@@ -41,6 +41,8 @@ class MedicoModelo():
                                    headers = self.headers)
             
             response_data = json.loads(response.text)
+
+            print(response_data)
             id_paciente = response_data[0]['id_paciente']
             nombre = response_data[0]['nombre']
             apellido = response_data[0]['apellido']
