@@ -6,10 +6,10 @@ con_reporte = ReporteControlador()
 crear_reporte = Blueprint('crear_reporte', __name__)
 obtener_reporte = Blueprint('obtener_reporte', __name__)
 
-@crear_reporte.route('/crear_reporte/', methods=['POST'])
+@crear_reporte.route('/crear-reporte/<id>', methods=['POST'])
 @cross_origin()
-def creacion_reporte():
-   return con_reporte.crear_reporte()
+def creacion_reporte(id):
+   return con_reporte.crear_reporte(id)
 
 @obtener_reporte.route('/obtener_reporte/', methods=['GET'])
 @cross_origin()

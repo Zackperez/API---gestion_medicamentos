@@ -22,7 +22,6 @@ class MedicoModelo():
             apellido = response_data[0]['apellido']
             celular = response_data[0]['celular']
             correo = response_data[0]['correo']
-            print(id_doctor)
 
             return jsonify({"id_doctor": id_doctor,
                             "nombre": nombre,
@@ -42,7 +41,6 @@ class MedicoModelo():
             
             response_data = json.loads(response.text)
 
-            print(response_data)
             id_paciente = response_data[0]['id_paciente']
             nombre = response_data[0]['nombre']
             apellido = response_data[0]['apellido']

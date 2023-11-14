@@ -44,7 +44,6 @@ class RecordatorioModelo():
     def obtener_recordatorio(self, id):
 
         try:
-
             response = requests.get(f'https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS?id_paciente=eq.{id}',
             headers= self.headers)
 

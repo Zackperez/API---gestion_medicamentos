@@ -69,16 +69,7 @@ class RegistroUsuario():
                                      
                 data = datos_insertar_paciente_nuevo, 
                 headers = self.headers)
-            #response3 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/REPORTES',
-                                      
-            #    data= datos_insertar_nuevo_reporte,
-            #    headers=self.headers)
-
-            #response4 = requests.post('https://tscfmjlnezdjlzwsmcmx.supabase.co/rest/v1/RECORDATORIOS_MEDICINAS',
-                                      
-            #   data= datos_recordatorio_tiempo_medicina,
-            #   headers=self.headers)
-
+            
             return jsonify({"Registro de usuario": "Exitoso", "Registro de paciente": "Exitoso", "Registro de reporte": "Exitoso"})
         
         except requests.exceptions.HTTPError as err:

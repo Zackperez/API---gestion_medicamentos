@@ -7,6 +7,7 @@ from routes.recordatorios_medicamentos_rutas import *
 from routes.medico_rutas import *
 from routes.reportes_rutas import *
 from routes.usuario_rutas import *
+from routes.area_notificaciones_rutas import *
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 
 app = Flask(__name__)
@@ -25,6 +26,8 @@ app.register_blueprint(obtener_reporte)
 app.register_blueprint(obtener_datos_usuario)
 app.register_blueprint(datos_de_doctor)
 app.register_blueprint(obtener_notificaciones_usuario)
+app.register_blueprint(enviar_notificaciones_usuario)
+
 
 def pagina_no_encontrada(error):
     return "<h1>La pagina a la que intentas acceder no existe...</h1>"

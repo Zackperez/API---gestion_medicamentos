@@ -24,7 +24,6 @@ class Usuario():
         # Si el usuario existe y la contraseña es correcta, se devuelve un token JWT
         if len(res.data) == 1:
             json_data = res.data
-            print(json_data)
             access_token = create_access_token(identity=user)
             id_paciente = json_data[0]['id_paciente']
             rol = json_data[0]['rol']
